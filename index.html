@@ -42,7 +42,7 @@ footer strong{color:#f3d27a}
   <div class="logo">ULTRAWALL 4K</div>
   <div class="center-name">Zeeshan Jutt</div>
   <div class="search-box">
-    <input type="text" id="si" placeholder="Search 100+ 4K wallpapers..." onkeyup="sw()">
+    <input type="text" id="si" placeholder="Search 4K wallpapers..." onkeyup="sw()">
     <span>🔍</span>
   </div>
 </header>
@@ -51,7 +51,7 @@ footer strong{color:#f3d27a}
   <div class="curated-pill">CURATED BY ZEESHAN JUTT</div>
   <h1>Royal 4K &amp; Ultra HD Gallery</h1>
   <div class="cats">
-    <button class="cbtn active" onclick="fc('all',event)">All Collection (100+)</button>
+    <button class="cbtn active" onclick="fc('all',event)">All Collection</button>
     <button class="cbtn" onclick="fc('nature',event)">Nature</button>
     <button class="cbtn" onclick="fc('cars',event)">Supercars</button>
     <button class="cbtn" onclick="fc('neon',event)">Neon &amp; AI</button>
@@ -77,34 +77,22 @@ footer strong{color:#f3d27a}
 const gal=document.getElementById('gal');
 const exts=['jpg','png','webp','jpeg'];
 const cats=['nature','cars','neon','space'];
-let count=1;
 
-function addCard(src,cat,tag){
-  const num=count++;
-  const card=document.createElement('div');
-  card.className='card';
-  card.dataset.cat=cat;
-  card.dataset.title=`ultrawall 4k royal ${tag} ${cat} wallpaper ${num}`;
-  card.innerHTML=`
-    <span class="badge-4k">4K</span>
-    <img src="${src}" loading="lazy" onclick="om('${src}')" onerror="this.parentElement.remove()">
-    <a href="${src}" download="UltraWall-4K-${num}.jpg" target="_blank" class="dl-center">Download</a>
-  `;
-  gal.appendChild(card);
-}
-
-for(let i=1;i<=50;i++){
+for(let i=1;i<=100;i++){
   exts.forEach((ext,eIdx)=>{
     let cat=cats[(i+eIdx)%cats.length];
     let path=`/nature/${encodeURIComponent(`w (${i}).${ext}`)}`;
-    addCard(path,cat,'exclusive');
+    const card=document.createElement('div');
+    card.className='card';
+    card.dataset.cat=cat;
+    card.dataset.title=`ultrawall 4k royal ${cat} wallpaper ${i}`;
+    card.innerHTML=`
+      <span class="badge-4k">4K</span>
+      <img src="${path}" onclick="om('${path}')" onerror="this.parentElement.remove()">
+      <a href="${path}" download="UltraWall-4K-${i}.${ext}" class="dl-center">Download</a>
+    `;
+    gal.appendChild(card);
   });
-}
-
-for(let id=10;id<=115;id++){
-  let cat=cats[id%cats.length];
-  let url=`https://picsum.photos{id}/800/1200`;
-  addCard(url,cat,`hd collection ${id}`);
 }
 
 function fc(c,e){
