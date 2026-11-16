@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zeeshan Jutt 4K Wallpapers - UltraWall HD</title>
+    <title>UltraWall 4K - Created by Zeeshan Jutt</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -21,9 +21,10 @@
         .categories { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 30px; }
         .cat-btn { padding: 10px 22px; border-radius: 30px; border: 1px solid #2d375a; background: #14192d; color: #fff; cursor: pointer; font-weight: 600; transition: 0.3s; }
         .cat-btn:hover, .cat-btn.active { background: linear-gradient(45deg, #00f2fe, #4facfe); color: #0b0d17; border-color: transparent; }
-        .creator-banner { max-width: 750px; margin: 0 auto 45px; padding: 15px 25px; background: rgba(20, 25, 45, 0.7); border: 1px dashed #00f2fe; text-align: center; border-radius: 16px; box-shadow: 0 0 25px rgba(0, 242, 254, 0.15); }
+        .creator-banner { max-width: 750px; margin: 0 auto 35px; padding: 15px 25px; background: rgba(20, 25, 45, 0.7); border: 1px dashed #00f2fe; text-align: center; border-radius: 16px; box-shadow: 0 0 25px rgba(0, 242, 254, 0.15); }
         .creator-banner span { display: block; font-size: 12px; color: #a0aec0; }
         .creator-banner h2 { font-family: 'Great Vibes', cursive; font-size: 48px; font-weight: normal; color: #ffffff; text-shadow: 0 0 15px #00f2fe, 0 0 30px #4facfe; }
+        .ad-container { max-width: 800px; margin: 0 auto 30px; text-align: center; }
         .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; padding: 0 5% 60px; }
         .card { position: relative; border-radius: 16px; overflow: hidden; background: #14192d; box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: 0.4s; cursor: pointer; border: 1px solid #1f2642; }
         .card:hover { transform: translateY(-8px) scale(1.02); border-color: #00f2fe; }
@@ -68,11 +69,13 @@
             <span>Site Creator & Brand Partner</span>
             <h2>Zeeshan Jutt</h2>
         </div>
+
+        <div class="ad-container">
+            <!-- Adsterra یا کسی بھی اشتہار کا کوڈ یہاں پیسٹ کریں -->
+        </div>
     </section>
 
-    <div class="gallery" id="wallpaperGallery">
-        <p style="text-align:center; width:100%; color:#00f2fe;">Loading Wallpapers...</p>
-    </div>
+    <div class="gallery" id="wallpaperGallery"></div>
 
     <div class="modal" id="previewModal">
         <img id="modalImg" src="" alt="Preview">
@@ -87,35 +90,43 @@
     </footer>
 
     <script>
-        const sheetURL = "https://google.com";
+        const repoOwner = "zj856868-prog";
+        const repoName = "zj-wallpapers";
+        const folders = ["nature", "cars", "neon", "space"];
 
-        let wallpapers = [];
+        const starterWallpapers = [
+            { title: "Sunset Ocean Tree", category: "nature", img: "https://pexels.com" },
+            { title: "Neon Sports Car", category: "cars", img: "https://pexels.com" },
+            { title: "Cyberpunk City", category: "neon", img: "https://pexels.com" },
+            { title: "Galaxy Stars", category: "space", img: "https://pexels.com" }
+        ];
+
+        let wallpapers = [...starterWallpapers];
         const gallery = document.getElementById('wallpaperGallery');
 
-        async function loadFromGoogleSheet() {
-            try {
-                const response = await fetch(sheetURL);
-                const data = await response.text();
-                const rows = data.split(/\r?\n/).slice(1);
-                
-                wallpapers = rows.map(row => {
-                    const cols = row.split(',');
-                    if(cols.length >= 3) {
-                        return {
-                            title: cols[0].trim(),
-                            category: cols[1].trim().toLowerCase(),
-                            img: cols[2].trim()
-                        };
+        async function loadGitHubWallpapers() {
+            displayWallpapers(wallpapers);
+            let uploaded = [];
+            for (const cat of folders) {
+                try {
+                    const res = await fetch(`https://github.com{repoOwner}/${repoName}/contents/${cat}`);
+                    if (res.ok) {
+                        const files = await res.json();
+                        files.forEach(file => {
+                            if (file.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
+                                uploaded.push({
+                                    title: file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " "),
+                                    category: cat,
+                                    img: file.download_url
+                                });
+                            }
+                        });
                     }
-                }).filter(item => item && item.img && item.img.startsWith('http'));
-
-                if(wallpapers.length === 0) {
-                    gallery.innerHTML = "<p style='text-align:center; width:100%;'>No wallpapers found. Add image links in Google Sheet.</p>";
-                } else {
-                    displayWallpapers(wallpapers);
-                }
-            } catch (error) {
-                gallery.innerHTML = "<p style='text-align:center; width:100%;'>Loading Error. Please refresh.</p>";
+                } catch (e) {}
+            }
+            if (uploaded.length > 0) {
+                wallpapers = [...uploaded, ...starterWallpapers];
+                displayWallpapers(wallpapers);
             }
         }
 
@@ -151,16 +162,3 @@
         }
 
         function openModal(imgSrc) {
-            document.getElementById('modalImg').src = imgSrc;
-            document.getElementById('modalDownload').href = imgSrc;
-            document.getElementById('previewModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('previewModal').style.display = 'none';
-        }
-
-        loadFromGoogleSheet();
-    </script>
-</body>
-</html>
