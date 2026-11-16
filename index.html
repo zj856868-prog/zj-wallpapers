@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UltraWall 4K - Curated by Zeeshan Jutt</title>
+<script>(function(s){s.dataset.zone='12275286',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 <link href="https://googleapis.com" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
@@ -21,7 +22,6 @@ header{background:rgba(9,9,11,.95);backdrop-filter:blur(12px);padding:18px 5%;di
 .cats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:25px}
 .cbtn{padding:10px 24px;border-radius:30px;border:1px solid #5c4d26;background:rgba(20,20,23,.8);color:#e4e4e7;cursor:pointer;font-weight:600;font-size:14px;transition:.3s}
 .cbtn.active,.cbtn:hover{background:linear-gradient(135deg,#f6d365 0%,#d4af37 100%);color:#09090b;border-color:transparent;box-shadow:0 4px 18px rgba(212,175,55,.35)}
-.ad-space{max-width:820px;margin:0 auto 20px;text-align:center}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px;padding:10px 5% 60px}
 .card{position:relative;border-radius:18px;overflow:hidden;background:#141417;border:2px solid #1f1f23;height:360px;transition:.35s;cursor:pointer}
 .card:hover{transform:translateY(-6px);border-color:#e5c158;box-shadow:0 0 28px rgba(229,193,88,.45)}
@@ -42,7 +42,7 @@ footer strong{color:#f3d27a}
   <div class="logo">ULTRAWALL 4K</div>
   <div class="center-name">Zeeshan Jutt</div>
   <div class="search-box">
-    <input type="text" id="si" placeholder="Search" onkeyup="sw()">
+    <input type="text" id="si" placeholder="Search 100+ 4K wallpapers..." onkeyup="sw()">
     <span>🔍</span>
   </div>
 </header>
@@ -51,13 +51,12 @@ footer strong{color:#f3d27a}
   <div class="curated-pill">CURATED BY ZEESHAN JUTT</div>
   <h1>Royal 4K &amp; Ultra HD Gallery</h1>
   <div class="cats">
-    <button class="cbtn active" onclick="fc('all',event)">All Collection</button>
+    <button class="cbtn active" onclick="fc('all',event)">All Collection (100+)</button>
     <button class="cbtn" onclick="fc('nature',event)">Nature</button>
     <button class="cbtn" onclick="fc('cars',event)">Supercars</button>
     <button class="cbtn" onclick="fc('neon',event)">Neon &amp; AI</button>
     <button class="cbtn" onclick="fc('space',event)">Cosmos</button>
   </div>
-  <div class="ad-space"><!-- Paste Adsterra Ad Code Here --></div>
 </section>
 
 <div class="gallery" id="gal"></div>
@@ -65,7 +64,7 @@ footer strong{color:#f3d27a}
 <div class="modal" id="mod">
   <img id="mimg" src="">
   <div style="margin-top:18px;display:flex;gap:15px">
-    <a id="mdl" href="" download style="background:linear-gradient(135deg,#f6d365,#d4af37);color:#09090b;padding:10px 26px;border-radius:12px;text-decoration:none;font-weight:800">Download 4K</a>
+    <a id="mdl" href="" download target="_blank" style="background:linear-gradient(135deg,#f6d365,#d4af37);color:#09090b;padding:10px 26px;border-radius:12px;text-decoration:none;font-weight:800">Download 4K</a>
     <button onclick="document.getElementById('mod').style.display='none'" style="background:#27272a;color:#fff;border:1px solid #3f3f46;padding:10px 24px;border-radius:12px;cursor:pointer;font-weight:600">Close</button>
   </div>
 </div>
@@ -80,28 +79,41 @@ const exts=['jpg','png','webp','jpeg'];
 const cats=['nature','cars','neon','space'];
 let count=1;
 
-function addCard(src,cat){
+function addCard(src,cat,tag){
   const num=count++;
   const card=document.createElement('div');
   card.className='card';
   card.dataset.cat=cat;
-  card.dataset.title=`ultrawall 4k royal wallpaper ${num} ${cat}`;
+  card.dataset.title=`ultrawall 4k royal ${tag} ${cat} wallpaper ${num}`;
   card.innerHTML=`
     <span class="badge-4k">4K</span>
     <img src="${src}" loading="lazy" onclick="om('${src}')" onerror="this.parentElement.remove()">
-    <a href="${src}" download="UltraWall-4K-${num}.jpg" class="dl-center">Download</a>
+    <a href="${src}" download="UltraWall-4K-${num}.jpg" target="_blank" class="dl-center">Download</a>
   `;
   gal.appendChild(card);
 }
 
-for(let i=1;i<=120;i++){
+for(let i=1;i<=50;i++){
   exts.forEach((ext,eIdx)=>{
     let cat=cats[(i+eIdx)%cats.length];
-    let fileName=`w (${i}).${ext}`;
-    let path=`/nature/${encodeURIComponent(fileName)}`;
-    addCard(path,cat);
+    let path=`/nature/${encodeURIComponent(`w (${i}).${ext}`)}`;
+    addCard(path,cat,'exclusive');
   });
 }
+
+const seedIds=[
+  10,11,12,13,14,15,16,17,18,19,20,24,25,27,28,29,33,35,37,38,41,42,43,48,49,
+  50,54,55,56,57,58,62,65,69,70,71,74,76,77,82,83,84,88,89,90,91,92,96,98,100,
+  101,103,104,106,110,111,112,114,115,116,118,119,120,122,124,127,128,129,130,132,
+  134,135,136,137,140,141,142,143,145,147,149,152,154,155,158,160,162,164,165,167,
+  168,171,173,175,177,179,180,182,184,186,188,190,192,195
+];
+
+seedIds.forEach((id,idx)=>{
+  let cat=cats[idx%cats.length];
+  let url=`https://picsum.photos{id}/800/1200`;
+  addCard(url,cat,`hd collection ${id}`);
+});
 
 function fc(c,e){
   document.querySelectorAll('.cbtn').forEach(b=>b.classList.remove('active'));
