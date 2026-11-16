@@ -77,7 +77,6 @@ footer strong{color:#f3d27a}
 <script>
 const gal=document.getElementById('gal');
 const exts=['jpg','png','webp','jpeg'];
-const suffixes=['',' - Copy',' - Copy - Copy',' - Copy - Copy - Copy'];
 const cats=['nature','cars','neon','space'];
 let count=1;
 
@@ -97,12 +96,10 @@ function addCard(src,cat){
 
 for(let i=1;i<=120;i++){
   exts.forEach((ext,eIdx)=>{
-    suffixes.forEach((suf,sIdx)=>{
-      let cat=cats[(i+eIdx+sIdx)%cats.length];
-      let fileName=`w (${i})${suf}.${ext}`;
-      let path=`/nature/${encodeURIComponent(fileName)}`;
-      addCard(path,cat);
-    });
+    let cat=cats[(i+eIdx)%cats.length];
+    let fileName=`w (${i}).${ext}`;
+    let path=`/nature/${encodeURIComponent(fileName)}`;
+    addCard(path,cat);
   });
 }
 
