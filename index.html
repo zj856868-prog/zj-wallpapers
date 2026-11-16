@@ -64,10 +64,10 @@ footer{text-align:center;padding:25px;background:#070910;color:#718096;border-to
 <script>
 const owner="zj856868-prog",repo="zj-wallpapers",cats=["nature","cars","neon","space"];
 let list=[
-  {t:"Sunset Ocean Tree",c:"nature",i:"https://pexels.com"},
-  {t:"Neon Sports Car",c:"cars",i:"https://pexels.com"},
-  {t:"Cyberpunk City",c:"neon",i:"https://pexels.com"},
-  {t:"Galaxy Stars",c:"space",i:"https://pexels.com"}
+  {t:"Mountain Lake 4K",c:"nature",i:"https://picsum.photos"},
+  {t:"Forest Mist HD",c:"nature",i:"https://picsum.photos"},
+  {t:"Night Stars Sky",c:"space",i:"https://picsum.photos"},
+  {t:"Ocean Waves 4K",c:"nature",i:"https://picsum.photos"}
 ];
 function show(arr){
   const g=document.getElementById('gal');g.innerHTML="";
@@ -82,7 +82,13 @@ async function load(){
       const r=await fetch(`https://github.com{owner}/${repo}/contents/${c}`);
       if(r.ok){
         const f=await r.json();
-        f.forEach(x=>{if(x.name.match(/\.(jpg|jpeg|png|webp)$/i))up.push({t:x.name.split('.')[0].slice(0,22),c:c,i:x.download_url})});
+        f.forEach(x=>{
+          if(x.name.match(/\.(jpg|jpeg|png|webp)$/i)){
+            let cleanName=x.name.replace(/\.[^/.]+$/,"").substring(0,22);
+            let rawImg=`https://githubusercontent.com{owner}/${repo}/main/${c}/${encodeURIComponent(x.name)}`;
+            up.push({t:cleanName,c:c,i:rawImg});
+          }
+        });
       }
     }catch(e){}
   }
