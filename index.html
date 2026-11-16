@@ -7,7 +7,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 body{background:#0b0d17;color:#fff;overflow-x:hidden}
-header{background:rgba(15,19,34,.9);padding:18px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;border-bottom:1px solid #1f2642;flex-wrap:wrap;gap:15px}
+header{background:rgba(15,19,34,.95);padding:18px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;border-bottom:1px solid #1f2642;flex-wrap:wrap;gap:15px}
 .brand{display:flex;align-items:center;gap:15px}
 .logo{font-size:28px;font-weight:800;background:linear-gradient(45deg,#00f2fe,#4facfe);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .div{height:28px;width:1px;background:#3b4875}
@@ -18,7 +18,7 @@ header{background:rgba(15,19,34,.9);padding:18px 5%;display:flex;justify-content
 .hero h1{font-size:40px;margin-bottom:10px}
 .hero p{color:#a0aec0;font-size:16px;margin-bottom:25px}
 .cats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:25px}
-.cbtn{padding:9px 20px;border-radius:30px;border:1px solid #2d375a;background:#14192d;color:#fff;cursor:pointer;font-weight:600}
+.cbtn{padding:9px 20px;border-radius:30px;border:1px solid #2d375a;background:#14192d;color:#fff;cursor:pointer;font-weight:600;transition:.3s}
 .cbtn.active,.cbtn:hover{background:linear-gradient(45deg,#00f2fe,#4facfe);color:#0b0d17;border-color:transparent}
 .banner{max-width:700px;margin:0 auto 25px;padding:12px 20px;background:rgba(20,25,45,.7);border:1px dashed #00f2fe;border-radius:16px}
 .banner span{font-size:12px;color:#a0aec0}
@@ -26,7 +26,7 @@ header{background:rgba(15,19,34,.9);padding:18px 5%;display:flex;justify-content
 .ad-box{max-width:800px;margin:0 auto 25px;text-align:center}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px;padding:0 5% 50px}
 .card{position:relative;border-radius:15px;overflow:hidden;background:#14192d;border:1px solid #1f2642;transition:.3s;cursor:pointer}
-.card:hover{transform:translateY(-6px);border-color:#00f2fe}
+.card:hover{transform:translateY(-6px);border-color:#00f2fe;box-shadow:0 10px 25px rgba(0,242,254,.2)}
 .card img{width:100%;height:210px;object-fit:cover;display:block}
 .ov{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(11,13,23,.95));padding:15px;display:flex;justify-content:space-between;align-items:center}
 .dbtn{background:#00f2fe;color:#0b0d17;padding:7px 16px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
@@ -38,12 +38,12 @@ footer{text-align:center;padding:25px;background:#070910;color:#718096;border-to
 <body>
 <header>
   <div class="brand"><div class="logo">UltraWall 4K</div><div class="div"></div><div class="cname">Zeeshan Jutt</div></div>
-  <div class="sbox"><input type="text" id="si" placeholder="Search wallpapers..." onkeyup="sw()"></div>
+  <div class="sbox"><input type="text" id="si" placeholder="Search 4K wallpapers..." onkeyup="sw()"></div>
 </header>
 <section class="hero">
   <div class="badge">Site Creator & Brand Partner</div>
   <h1>Stunning 4K & HD Wallpapers</h1>
-  <p>Free high-resolution wallpapers for desktop and mobile.</p>
+  <p>Download free high-resolution wallpapers for desktop and mobile.</p>
   <div class="cats">
     <button class="cbtn active" onclick="fc('all',event)">All</button>
     <button class="cbtn" onclick="fc('nature',event)">Nature</button>
@@ -62,42 +62,52 @@ footer{text-align:center;padding:25px;background:#070910;color:#718096;border-to
 </div>
 <footer><p>&copy; 2026 UltraWall 4K - Created by <strong>Zeeshan Jutt</strong>.</p></footer>
 <script>
-const owner="zj856868-prog",repo="zj-wallpapers",cats=["nature","cars","neon","space"];
-let list=[
-  {t:"Mountain Lake 4K",c:"nature",i:"https://picsum.photos"},
-  {t:"Forest Mist HD",c:"nature",i:"https://picsum.photos"},
-  {t:"Night Stars Sky",c:"space",i:"https://picsum.photos"},
-  {t:"Ocean Waves 4K",c:"nature",i:"https://picsum.photos"}
+const gal=document.getElementById('gal');
+const cats=['nature','cars','neon','space'];
+const data=[
+  {t:"Nature Sunrise 4K",c:"nature",i:"https://unsplash.com"},
+  {t:"Luxury Supercar 4K",c:"cars",i:"https://unsplash.com"},
+  {t:"Cyberpunk Neon Night",c:"neon",i:"https://unsplash.com"},
+  {t:"Deep Space Nebula",c:"space",i:"https://unsplash.com"},
+  {t:"Misty Pine Forest",c:"nature",i:"https://unsplash.com"},
+  {t:"Sports Car Drift",c:"cars",i:"https://unsplash.com"},
+  {t:"Neon Lights City",c:"neon",i:"https://unsplash.com"},
+  {t:"Milky Way Galaxy",c:"space",i:"https://unsplash.com"},
+  {t:"Mountain Peak Snow",c:"nature",i:"https://unsplash.com"},
+  {t:"Red Ferrari 4K",c:"cars",i:"https://unsplash.com"},
+  {t:"Future AI Neon",c:"neon",i:"https://unsplash.com"},
+  {t:"Astronaut in Space",c:"space",i:"https://unsplash.com"},
+  {t:"Tropical Beach Sunset",c:"nature",i:"https://unsplash.com"},
+  {t:"Black Lamborghini",c:"cars",i:"https://unsplash.com"},
+  {t:"Abstract 3D Neon",c:"neon",i:"https://unsplash.com"},
+  {t:"Earth From Orbit",c:"space",i:"https://unsplash.com"}
 ];
-function show(arr){
-  const g=document.getElementById('gal');g.innerHTML="";
+
+function render(arr){
+  gal.innerHTML="";
   arr.forEach(w=>{
-    g.innerHTML+=`<div class="card"><img src="${w.i}" onclick="om('${w.i}')"><div class="ov"><span>${w.t}</span><a href="${w.i}" download class="dbtn" target="_blank">Download</a></div></div>`;
+    gal.innerHTML+=`<div class="card"><img src="${w.i}" loading="lazy" onclick="om('${w.i}')"><div class="ov"><span>${w.t}</span><a href="${w.i}" download="${w.t}.jpg" class="dbtn" target="_blank">Download</a></div></div>`;
   });
 }
-async function load(){
-  show(list);let up=[];
-  for(const c of cats){
-    try{
-      const r=await fetch(`https://github.com{owner}/${repo}/contents/${c}`);
-      if(r.ok){
-        const f=await r.json();
-        f.forEach(x=>{
-          if(x.name.match(/\.(jpg|jpeg|png|webp)$/i)){
-            let cleanName=x.name.replace(/\.[^/.]+$/,"").substring(0,22);
-            let rawImg=`https://githubusercontent.com{owner}/${repo}/main/${c}/${encodeURIComponent(x.name)}`;
-            up.push({t:cleanName,c:c,i:rawImg});
-          }
-        });
-      }
-    }catch(e){}
-  }
-  if(up.length){list=[...up,...list];show(list);}
+
+function fc(c,e){
+  document.querySelectorAll('.cbtn').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  render(c==='all'?data:data.filter(w=>w.c===c));
 }
-function fc(c,e){document.querySelectorAll('.cbtn').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');show(c==='all'?list:list.filter(w=>w.c===c));}
-function sw(){const q=document.getElementById('si').value.toLowerCase();show(list.filter(w=>w.t.toLowerCase().includes(q)));}
-function om(s){document.getElementById('mimg').src=s;document.getElementById('mdl').href=s;document.getElementById('mod').style.display='flex';}
-load();
+
+function sw(){
+  const q=document.getElementById('si').value.toLowerCase();
+  render(data.filter(w=>w.t.toLowerCase().includes(q)));
+}
+
+function om(s){
+  document.getElementById('mimg').src=s;
+  document.getElementById('mdl').href=s;
+  document.getElementById('mod').style.display='flex';
+}
+
+render(data);
 </script>
 </body>
 </html>
