@@ -1,164 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UltraWall 4K - Created by Zeeshan Jutt</title>
-    <link href="https://googleapis.com" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: #0b0d17; color: #ffffff; overflow-x: hidden; }
-        header { background: rgba(15, 19, 34, 0.9); backdrop-filter: blur(10px); padding: 18px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #1f2642; flex-wrap: wrap; gap: 15px; }
-        .brand-area { display: flex; align-items: center; gap: 15px; }
-        .logo { font-size: 28px; font-weight: 800; background: linear-gradient(45deg, #00f2fe, #4facfe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .divider { height: 28px; width: 1px; background-color: #3b4875; }
-        .creator-nav-name { font-family: 'Great Vibes', cursive; font-size: 32px; color: #ffffff; text-shadow: 0 0 10px rgba(0, 242, 254, 0.7); }
-        .search-box input { padding: 10px 20px; border-radius: 25px; border: 1px solid #2d375a; background: #14192d; color: #fff; width: 280px; outline: none; }
-        .hero { text-align: center; padding: 50px 20px 30px; background: radial-gradient(circle at center, #18203c 0%, #0b0d17 70%); }
-        .creator-badge { color: #00f2fe; font-size: 14px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
-        .hero h1 { font-size: 42px; margin-bottom: 12px; }
-        .hero p { color: #a0aec0; font-size: 17px; max-width: 600px; margin: 0 auto 30px; }
-        .categories { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 30px; }
-        .cat-btn { padding: 10px 22px; border-radius: 30px; border: 1px solid #2d375a; background: #14192d; color: #fff; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .cat-btn:hover, .cat-btn.active { background: linear-gradient(45deg, #00f2fe, #4facfe); color: #0b0d17; border-color: transparent; }
-        .creator-banner { max-width: 750px; margin: 0 auto 35px; padding: 15px 25px; background: rgba(20, 25, 45, 0.7); border: 1px dashed #00f2fe; text-align: center; border-radius: 16px; box-shadow: 0 0 25px rgba(0, 242, 254, 0.15); }
-        .creator-banner span { display: block; font-size: 12px; color: #a0aec0; }
-        .creator-banner h2 { font-family: 'Great Vibes', cursive; font-size: 48px; font-weight: normal; color: #ffffff; text-shadow: 0 0 15px #00f2fe, 0 0 30px #4facfe; }
-        .ad-container { max-width: 800px; margin: 0 auto 30px; text-align: center; }
-        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; padding: 0 5% 60px; }
-        .card { position: relative; border-radius: 16px; overflow: hidden; background: #14192d; box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: 0.4s; cursor: pointer; border: 1px solid #1f2642; }
-        .card:hover { transform: translateY(-8px) scale(1.02); border-color: #00f2fe; }
-        .card img { width: 100%; height: 220px; object-fit: cover; display: block; }
-        .card-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(11, 13, 23, 0.95)); padding: 20px; display: flex; justify-content: space-between; align-items: center; opacity: 0; transition: 0.3s; }
-        .card:hover .card-overlay { opacity: 1; }
-        .download-btn { background: #00f2fe; color: #0b0d17; padding: 8px 18px; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: 14px; }
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.92); justify-content: center; align-items: center; flex-direction: column; }
-        .modal img { max-width: 85%; max-height: 75vh; border-radius: 12px; }
-        .modal-controls { margin-top: 20px; display: flex; gap: 15px; }
-        .close-btn { background: #ff4b5c; color: white; border: none; padding: 10px 25px; border-radius: 25px; cursor: pointer; font-weight: bold; }
-        footer { text-align: center; padding: 30px; background: #070910; color: #718096; border-top: 1px solid #1f2642; }
-    </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UltraWall 4K - Zeeshan Jutt</title>
+<link href="https://googleapis.com" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#0b0d17;color:#fff;overflow-x:hidden}
+header{background:rgba(15,19,34,.9);padding:18px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;border-bottom:1px solid #1f2642;flex-wrap:wrap;gap:15px}
+.brand{display:flex;align-items:center;gap:15px}
+.logo{font-size:28px;font-weight:800;background:linear-gradient(45deg,#00f2fe,#4facfe);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.div{height:28px;width:1px;background:#3b4875}
+.cname{font-family:'Great Vibes',cursive;font-size:32px;color:#fff;text-shadow:0 0 10px rgba(0,242,254,.7)}
+.sbox input{padding:10px 20px;border-radius:25px;border:1px solid #2d375a;background:#14192d;color:#fff;width:260px;outline:none}
+.hero{text-align:center;padding:45px 20px 25px;background:radial-gradient(circle at center,#18203c 0%,#0b0d17 70%)}
+.badge{color:#00f2fe;font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:40px;margin-bottom:10px}
+.hero p{color:#a0aec0;font-size:16px;margin-bottom:25px}
+.cats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:25px}
+.cbtn{padding:9px 20px;border-radius:30px;border:1px solid #2d375a;background:#14192d;color:#fff;cursor:pointer;font-weight:600}
+.cbtn.active,.cbtn:hover{background:linear-gradient(45deg,#00f2fe,#4facfe);color:#0b0d17;border-color:transparent}
+.banner{max-width:700px;margin:0 auto 25px;padding:12px 20px;background:rgba(20,25,45,.7);border:1px dashed #00f2fe;border-radius:16px}
+.banner span{font-size:12px;color:#a0aec0}
+.banner h2{font-family:'Great Vibes',cursive;font-size:46px;font-weight:400;text-shadow:0 0 15px #00f2fe}
+.ad-box{max-width:800px;margin:0 auto 25px;text-align:center}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px;padding:0 5% 50px}
+.card{position:relative;border-radius:15px;overflow:hidden;background:#14192d;border:1px solid #1f2642;transition:.3s;cursor:pointer}
+.card:hover{transform:translateY(-6px);border-color:#00f2fe}
+.card img{width:100%;height:210px;object-fit:cover;display:block}
+.ov{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(11,13,23,.95));padding:15px;display:flex;justify-content:space-between;align-items:center}
+.dbtn{background:#00f2fe;color:#0b0d17;padding:7px 16px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.92);justify-content:center;align-items:center;flex-direction:column}
+.modal img{max-width:85%;max-height:75vh;border-radius:12px}
+footer{text-align:center;padding:25px;background:#070910;color:#718096;border-top:1px solid #1f2642}
+</style>
 </head>
 <body>
-
-    <header>
-        <div class="brand-area">
-            <div class="logo">UltraWall 4K</div>
-            <div class="divider"></div>
-            <div class="creator-nav-name">Zeeshan Jutt</div>
-        </div>
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search 4K wallpapers..." onkeyup="searchWallpapers()">
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="creator-badge">Site Creator & Brand Partner</div>
-        <h1>Stunning 4K & HD Wallpapers</h1>
-        <p>Download free high-resolution wallpapers for your desktop and mobile screens.</p>
-        
-        <div class="categories">
-            <button class="cat-btn active" onclick="filterCategory('all', event)">All</button>
-            <button class="cat-btn" onclick="filterCategory('nature', event)">Nature</button>
-            <button class="cat-btn" onclick="filterCategory('cars', event)">Cars</button>
-            <button class="cat-btn" onclick="filterCategory('neon', event)">Neon & AI</button>
-            <button class="cat-btn" onclick="filterCategory('space', event)">Space</button>
-        </div>
-
-        <div class="creator-banner">
-            <span>Site Creator & Brand Partner</span>
-            <h2>Zeeshan Jutt</h2>
-        </div>
-
-        <div class="ad-container">
-            <!-- Adsterra یا کسی بھی اشتہار کا کوڈ یہاں پیسٹ کریں -->
-        </div>
-    </section>
-
-    <div class="gallery" id="wallpaperGallery"></div>
-
-    <div class="modal" id="previewModal">
-        <img id="modalImg" src="" alt="Preview">
-        <div class="modal-controls">
-            <a id="modalDownload" href="" download="wallpaper-4k.jpg" class="download-btn" target="_blank">Download 4K</a>
-            <button class="close-btn" onclick="closeModal()">Close</button>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 UltraWall 4K - Created by <strong>Zeeshan Jutt</strong>. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        const repoOwner = "zj856868-prog";
-        const repoName = "zj-wallpapers";
-        const folders = ["nature", "cars", "neon", "space"];
-
-        const starterWallpapers = [
-            { title: "Sunset Ocean Tree", category: "nature", img: "https://pexels.com" },
-            { title: "Neon Sports Car", category: "cars", img: "https://pexels.com" },
-            { title: "Cyberpunk City", category: "neon", img: "https://pexels.com" },
-            { title: "Galaxy Stars", category: "space", img: "https://pexels.com" }
-        ];
-
-        let wallpapers = [...starterWallpapers];
-        const gallery = document.getElementById('wallpaperGallery');
-
-        async function loadGitHubWallpapers() {
-            displayWallpapers(wallpapers);
-            let uploaded = [];
-            for (const cat of folders) {
-                try {
-                    const res = await fetch(`https://github.com{repoOwner}/${repoName}/contents/${cat}`);
-                    if (res.ok) {
-                        const files = await res.json();
-                        files.forEach(file => {
-                            if (file.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
-                                uploaded.push({
-                                    title: file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " "),
-                                    category: cat,
-                                    img: file.download_url
-                                });
-                            }
-                        });
-                    }
-                } catch (e) {}
-            }
-            if (uploaded.length > 0) {
-                wallpapers = [...uploaded, ...starterWallpapers];
-                displayWallpapers(wallpapers);
-            }
-        }
-
-        function displayWallpapers(items) {
-            gallery.innerHTML = "";
-            items.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <img src="${item.img}" alt="${item.title}" onclick="openModal('${item.img}')">
-                    <div class="card-overlay">
-                        <span class="card-title">${item.title}</span>
-                        <a href="${item.img}" download="${item.title}.jpg" class="download-btn" target="_blank">Download</a>
-                    </div>
-                `;
-                gallery.appendChild(card);
-            });
-        }
-
-        function filterCategory(cat, e) {
-            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
-            e.target.classList.add('active');
-            if (cat === 'all') {
-                displayWallpapers(wallpapers);
-            } else {
-                displayWallpapers(wallpapers.filter(w => w.category === cat));
-            }
-        }
-
-        function searchWallpapers() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            displayWallpapers(wallpapers.filter(w => w.title.toLowerCase().includes(query)));
-        }
-
-        function openModal(imgSrc) {
+<header>
+  <div class="brand"><div class="logo">UltraWall 4K</div><div class="div"></div><div class="cname">Zeeshan Jutt</div></div>
+  <div class="sbox"><input type="text" id="si" placeholder="Search wallpapers..." onkeyup="sw()"></div>
+</header>
+<section class="hero">
+  <div class="badge">Site Creator & Brand Partner</div>
+  <h1>Stunning 4K & HD Wallpapers</h1>
+  <p>Free high-resolution wallpapers for desktop and mobile.</p>
+  <div class="cats">
+    <button class="cbtn active" onclick="fc('all',event)">All</button>
+    <button class="cbtn" onclick="fc('nature',event)">Nature</button>
+    <button class="cbtn" onclick="fc('cars',event)">Cars</button>
+    <button class="cbtn" onclick="fc('neon',event)">Neon & AI</button>
+    <button class="cbtn" onclick="fc('space',event)">Space</button>
+  </div>
+  <div class="banner"><span>Site Creator & Brand Partner</span><h2>Zeeshan Jutt</h2></div>
+  <div class="ad-box"><!-- Paste Adsterra Ad Code Here --></div>
+</section>
+<div class="gallery" id="gal"></div>
+<div class="modal" id="mod">
+  <img id="mimg" src=""><div style="margin-top:15px;display:flex;gap:15px">
+  <a id="mdl" href="" download class="dbtn" target="_blank">Download 4K</a>
+  <button onclick="document.getElementById('mod').style.display='none'" style="background:#ff4b5c;color:#fff;border:none;padding:8px 20px;border-radius:20px;cursor:pointer">Close</button></div>
+</div>
+<footer><p>&copy; 2026 UltraWall 4K - Created by <strong>Zeeshan Jutt</strong>.</p></footer>
+<script>
+const owner="zj856868-prog",repo="zj-wallpapers",cats=["nature","cars","neon","space"];
+let list=[
+  {t:"Sunset Ocean Tree",c:"nature",i:"https://pexels.com"},
+  {t:"Neon Sports Car",c:"cars",i:"https://pexels.com"},
+  {t:"Cyberpunk City",c:"neon",i:"https://pexels.com"},
+  {t:"Galaxy Stars",c:"space",i:"https://pexels.com"}
+];
+function show(arr){
+  const g=document.getElementById('gal');g.innerHTML="";
+  arr.forEach(w=>{
+    g.innerHTML+=`<div class="card"><img src="${w.i}" onclick="om('${w.i}')"><div class="ov"><span>${w.t}</span><a href="${w.i}" download class="dbtn" target="_blank">Download</a></div></div>`;
+  });
+}
+async function load(){
+  show(list);let up=[];
+  for(const c of cats){
+    try{
+      const r=await fetch(`https://github.com{owner}/${repo}/contents/${c}`);
+      if(r.ok){
+        const f=await r.json();
+        f.forEach(x=>{if(x.name.match(/\.(jpg|jpeg|png|webp)$/i))up.push({t:x.name.split('.')[0].slice(0,22),c:c,i:x.download_url})});
+      }
+    }catch(e){}
+  }
+  if(up.length){list=[...up,...list];show(list);}
+}
+function fc(c,e){document.querySelectorAll('.cbtn').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');show(c==='all'?list:list.filter(w=>w.c===c));}
+function sw(){const q=document.getElementById('si').value.toLowerCase();show(list.filter(w=>w.t.toLowerCase().includes(q)));}
+function om(s){document.getElementById('mimg').src=s;document.getElementById('mdl').href=s;document.getElementById('mod').style.display='flex';}
+load();
+</script>
+</body>
+</html>
