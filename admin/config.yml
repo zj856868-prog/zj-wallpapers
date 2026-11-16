@@ -1,0 +1,17 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "wallpapers"
+    label: "Wallpapers"
+    folder: "data"
+    create: true
+    format: "json"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Category", name: "category", widget: "select", options: ["nature", "cars", "neon", "space"]}
+      - {label: "Wallpaper Image", name: "img", widget: "image"}
